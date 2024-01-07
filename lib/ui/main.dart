@@ -18,7 +18,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: ChangeNotifierProvider(
+        create: (_) => MainViewModel(),
+        child: const MainScreen(),
+      ),
     );
   }
 }
