@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:test_image_search_app/di/di_set_up.dart';
 import 'package:test_image_search_app/ui/main_view_model.dart';
 import 'widget/image_item_widget.dart';
 
 void main() {
+  diSetup();
   runApp(const MyApp());
 }
 
@@ -19,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: ChangeNotifierProvider(
-        create: (_) => MainViewModel(),
+        create: (_) => getIt<MainViewModel>(),
         child: const MainScreen(),
       ),
     );

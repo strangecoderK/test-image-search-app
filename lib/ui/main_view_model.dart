@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:test_image_search_app/data/repository/image_item_repository_impl.dart';
+import 'package:test_image_search_app/data/repository/image_item_repository.dart';
 import '../data/model/image_item.dart';
 
 class MainViewModel extends ChangeNotifier {
-  final repository = ImageItemRepositoryImpl();
+
+  MainViewModel({
+    required ImageItemRepository repository,
+  }) : _repository = repository;
+
+  ImageItemRepository _repository;
   List<ImageItem> imageItems = [];
   bool isLoading = false;
 
@@ -11,7 +16,7 @@ class MainViewModel extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    imageItems = await repository.getImageItems(query);
+    imageItems = await _repository.getImageItems(query);
 
     isLoading = false;
     notifyListeners();
